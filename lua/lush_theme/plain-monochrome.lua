@@ -138,12 +138,12 @@ local theme =
             -- String {fg = main_blue}, --   a string constant: "this is a string"
             -- Character      { }, --  a character constant: 'c', '\n'
             -- Number         { }, --   a number constant: 234, 0xff
-            Boolean {gui = "bold"}, --  a boolean constant: TRUE, false
+            Boolean {fg = main_blue, gui = "bold"}, --  a boolean constant: TRUE, false
             -- Float          { }, --    a floating point constant: 2.3e10
 
-            -- Identifier     { }, -- (preferred) any variable name
+            Identifier {fg = gray.lighten(30)}, -- (preferred) any variable name
             Function {fg = gray.lighten(70)}, -- function name (also: methods for classes)
-            Statement {}, -- (preferred) any statement
+            Statement {fg = gray.lighten(50)}, -- (preferred) any statement
             Conditional {gui = "bold"}, --  if, then, else, endif, switch, etc.
             Repeat {gui = "bold"}, --   for, do, while, etc.
             Label {gui = "italic"}, --    case, default, etc.
