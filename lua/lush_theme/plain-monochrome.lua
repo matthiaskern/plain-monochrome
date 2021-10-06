@@ -77,8 +77,8 @@ local theme =
             -- lCursor      { }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
             -- CursorIM     { }, -- like Cursor, but used when in IME mode |CursorIM|
             -- CursorColumn { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-            CursorLine {fg = white, bg = gray}, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
-            -- Directory    { }, -- directory names (and other special names in listings)
+            CursorLine {bg = gray}, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
+            Directory {fg = main_blue}, -- directory names (and other special names in listings)
             DiffAdd {bg = CursorLine.bg}, -- diff mode: Added line |diff.txt|
             DiffChange {bg = CursorLine.bg}, -- diff mode: Changed line |diff.txt|
             DiffDelete {bg = CursorLine.bg}, -- diff mode: Deleted line |diff.txt|
@@ -110,7 +110,7 @@ local theme =
             -- PmenuThumb   { }, -- Popup menu: Thumb of the scrollbar.
             -- Question     { }, -- |hit-enter| prompt and yes/no questions
             -- QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-            -- Search       { }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+            Search {fg = gray, gui = "underline", bg = white}, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
             -- SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
             -- SpellBad     { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
             -- SpellCap     { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
@@ -121,13 +121,12 @@ local theme =
             -- TabLine      { }, -- tab pages line, not active tab page label
             -- TabLineFill  { }, -- tab pages line, where there are no labels
             -- TabLineSel   { }, -- tab pages line, active tab page label
-            -- Title        { }, -- titles for output from ":set all", ":autocmd" etc.
+            Title {gui = "bold"}, -- titles for output from ":set all", ":autocmd" etc.
             -- Visual       { }, -- Visual mode selection
             -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
             WarningMsg {fg = complement}, -- warning messages
             -- Whitespace   { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
-            -- WildMenu     { }, -- current match in 'wildmenu' completion
-
+            WildMenu {Search}, -- current match in 'wildmenu' completion
             -- These groups are not listed as default vim groups,
             -- but they are defacto standard group names for syntax highlighting.
             -- commented out groups should chain up to their "preferred" group by
@@ -150,21 +149,22 @@ local theme =
             Operator {fg = main_blue}, -- "sizeof", "+", "*", etc.
             -- Keyword        { }, --  any other keyword
             Exception {gui = "bold"}, --  try, catch, throw
-            -- PreProc        { }, -- (preferred) generic Preprocessor
-            -- Include        { }, --  preprocessor #include
-            -- Define         { }, --   preprocessor #define
-            -- Macro          { }, --    same as Define
-            -- PreCondit      { }, --  preprocessor #if, #else, #endif, etc.
+            PreProc {gui = "bold"}, -- (preferred) generic Preprocessor
+            Include {gui = "bold"}, --  preprocessor #include
+            Define {gui = "bold"}, --   preprocessor #define
+            Macro {gui = "bold"}, --    same as Define
+            PreCondit {gui = "bold"}, --  preprocessor #if, #else, #endif, etc.
+            --
 
-            -- Type           { }, -- (preferred) int, long, char, etc.
+            Type {gui = "bold"}, -- (preferred) int, long, char, etc.
             -- StorageClass   { }, -- static, register, volatile, etc.
             -- Structure      { }, --  struct, union, enum, etc.
             -- Typedef        { }, --  A typedef
 
-            -- Special        { }, -- (preferred) any special symbol
-            -- SpecialChar    { }, --  special character in a constant
-            -- Tag            { }, --    you can use CTRL-] on this
-            -- Delimiter      { }, --  character that needs attention
+            Special {Identifier}, -- (preferred) any special symbol
+            SpecialChar {fg = Identifier.fg.lighten(50)}, --  special character in a constant
+            Tag {}, --    you can use CTRL-] on this
+            Delimiter {}, --  character that needs attention
             -- SpecialComment { }, -- special things inside a comment
             -- Debug          { }, --    debugging statements
 
@@ -176,8 +176,7 @@ local theme =
             -- Ignore         { }, -- (preferred) left blank, hidden  |hl-Ignore|
 
             Error {fg = complement}, -- (preferred) any erroneous construct
-            Todo {gui = "bold"} -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
-
+            Todo {gui = "bold", gui = "italic"}, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
             -- These groups are for the native LSP client. Some other LSP clients may
             -- use these groups, or use their own. Consult your LSP client's
             -- documentation.
@@ -229,7 +228,7 @@ local theme =
             -- TSConstant           { };    -- For constants
             -- TSConstBuiltin       { };    -- For constant that are built in the language: `nil` in Lua.
             -- TSConstMacro         { };    -- For constants that are defined by macros: `NULL` in C.
-            -- TSError              { };    -- For syntax/parser errors.
+            TSError {Error} -- For syntax/parser errors.
             -- TSException          { };    -- For exception related keywords.
             -- TSField              { };    -- For fields.
             -- TSFloat              { };    -- For floats.
