@@ -104,8 +104,8 @@ local theme =
             -- Normal       { }, -- normal text
             -- NormalFloat  { }, -- Normal text in floating windows.
             -- NormalNC     { }, -- normal text in non-current windows
-            -- Pmenu        { }, -- Popup menu: normal item.
-            -- PmenuSel     { }, -- Popup menu: selected item.
+            Pmenu {CursorLine}, -- Popup menu: normal item.
+            -- PmenuSel {bg = Pmenu.bg.lighten(20)}, -- Popup menu: selected item.
             -- PmenuSbar    { }, -- Popup menu: scrollbar.
             -- PmenuThumb   { }, -- Popup menu: Thumb of the scrollbar.
             -- Question     { }, -- |hit-enter| prompt and yes/no questions
