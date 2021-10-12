@@ -181,6 +181,7 @@ local theme =
             -- use these groups, or use their own. Consult your LSP client's
             -- documentation.
 
+            DiagnosticSign {CursorLine},
             -- LspReferenceText                     { }, -- used for highlighting "text" references
             -- LspReferenceRead                     { }, -- used for highlighting "read" references
             -- LspReferenceWrite                    { }, -- used for highlighting "write" references
